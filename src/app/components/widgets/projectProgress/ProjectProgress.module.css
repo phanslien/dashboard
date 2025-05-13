@@ -1,0 +1,40 @@
+.widgetContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+    height: 100%;
+    border-radius: 12px;
+    background: #f0f4ff;
+    padding-inline: 10px;
+}
+
+.title {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.progressBarContainer {
+    width: 100%;
+    height: 16px;
+    background: #dce6f7;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progressBar {
+    width: 72%;
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border-radius: 8px 0 0 8px;
+    transition: width 0.3s ease-in-out;
+}
+
+.status {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    color: #555;
+}
+  
