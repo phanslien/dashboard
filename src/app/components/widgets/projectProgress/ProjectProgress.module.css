@@ -3,17 +3,17 @@
     justify-content: center;
     flex-direction: column;
     align-items: center; 
+    gap: 8;
     height: 100%;
-    border-radius: 12px;
-    background: #f0f4ff;
+    background-color: #f4f4f4;
     padding-inline: 10px;
 }
 
 .title {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 600;
-    margin-bottom: 12px;
-    color: #2c3e50;
+    margin: 0;
+    color: #171717;
 }
 
 .progressBarContainer {
@@ -21,16 +21,13 @@
     height: 16px;
     background: #dce6f7;
     border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 10px;
 }
 
 .progressBar {
     width: 72%;
     height: 100%;
     background: linear-gradient(90deg, #4facfe, #00f2fe);
-    border-radius: 8px 0 0 8px;
-    transition: width 0.3s ease-in-out;
+    border-radius: 8px;
 }
 
 .status {

@@ -1,35 +1,35 @@
 
 .weather {
-    height: 100%;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
+  height: -webkit-fill-available;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .title {
-    order: 2; 
-    align-self: flex-start;
-  }
+  order: 2; 
+  align-self: flex-start;
+}
 
-  .temp {
-    order: 3; 
-    align-self: center
-  }
+.temp {
+  order: 3; 
+  align-self: center
+}
 
-  .status{
-    order: 1; 
-    align-self: center;
-  }
+.status{
+  order: 1; 
+  align-self: center;
+}
 
 .title {
-    font-size:  clamp(1rem, 2.5vw, 2.2rem);
-    margin-bottom: 8px;
+  font-size:  clamp(1rem, 2.5vw, 1.3rem);
+  margin: 0;
 }
 
 .temp, .status  {
-    font-size: clamp(1rem, 2.5vw, 1.6rem);
-    text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  text-align: center;
 }
 
 

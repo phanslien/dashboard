@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from 'react';
 import styles from './Dashboard.module.css';
 import ProjectProgress from '../widgets/projectProgress/ProjectProgress';
@@ -11,7 +10,7 @@ import Sidebar from '../sidebar/Sidebar';
 
 
 type Widget = {
-  id: string;
+  id: string; 
   content: string;
   row: number;
   col: number;
@@ -19,7 +18,6 @@ type Widget = {
   colSpan: number;
   className: string;
 };
-
 
 const numRows = 6;
 const numCols = 6;
@@ -31,9 +29,6 @@ const initialWidgets: Widget[] = [
   { id: 'stats', content: 'Stats', row: 0, col:2, rowSpan: 2, colSpan: 2, className: 'stats' },
   { id: 'notifications', content: 'Notifications', row: 2, col: 2, rowSpan: 2, colSpan: 2, className: 'notifications' },
 ];
-
-
-
 
 function Dashboard() {
   const isCellOccupied = (row: number, col: number): boolean => {
@@ -47,9 +42,6 @@ function Dashboard() {
     );
   };
   
-
-
-
   const [widgets, setWidgets] = useState<Widget[]>(initialWidgets);
   const [draggedWidget, setDraggedWidget] = useState<Widget | null>(null);
   
@@ -57,7 +49,6 @@ function Dashboard() {
     setDraggedWidget(widget);
     e.dataTransfer.setData("text/plain", widget.id);
   };
-
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -159,7 +150,6 @@ function Dashboard() {
     });
   
     if (!fits) {
-      console.log("Ikke nok plass til å plassere widgeten.");
       return;
     }
   
@@ -170,7 +160,7 @@ function Dashboard() {
           : w
       )
     );
-  
+
     setDraggedWidget(null);
   };
   
@@ -192,9 +182,6 @@ function Dashboard() {
     }
   };
 
-
-  
-
   return (
     <div className={styles.dashboardWrapper}>
       <Sidebar widgets={widgets} />
@@ -209,7 +196,7 @@ function Dashboard() {
             return (
               <div
                 key={`cell-${row}-${col}`}
-                className={`${styles.gridCell} ${occupied ? styles.occupied : ''}`}
+                className={`${styles.gridCell}`}
                 style={{
                   gridRow: row + 1,
                   gridColumn: col + 1,

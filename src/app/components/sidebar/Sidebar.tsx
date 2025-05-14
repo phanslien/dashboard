@@ -13,7 +13,7 @@ type SidebarProps = {
 const Sidebar = ({ widgets }: SidebarProps) => {
   return (
     <div className={styles.sidebar}>
-      <h3>Available Widgets</h3>
+      <h2>Available Widgets</h2>
       <ul>
         {widgets.map((widget) => (
           <li key={widget.id}  className={styles.widgetItem}>{widget.content}</li>
