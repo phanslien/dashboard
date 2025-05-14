@@ -1,9 +1,8 @@
-import React from 'react';
+
 import styles from './Sidebar.module.css';
 
 type Widget = {
   id: string;
-  content: string;
 };
 
 type SidebarProps = {
@@ -16,7 +15,7 @@ const Sidebar = ({ widgets }: SidebarProps) => {
       <h2>Available Widgets</h2>
       <ul>
         {widgets.map((widget) => (
-          <li key={widget.id}  className={styles.widgetItem}>{widget.content}</li>
+          <li key={widget.id}  className={styles.widgetItem}>{widget.id}</li>
         ))}
       </ul>
     </div>

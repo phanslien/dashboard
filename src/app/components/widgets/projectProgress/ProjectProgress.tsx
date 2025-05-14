@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import styles from './ProjectProgress.module.css'
 
 const ProjectProgress = () => {

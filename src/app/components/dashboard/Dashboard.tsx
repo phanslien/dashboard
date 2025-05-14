@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Dashboard.module.css';
 import ProjectProgress from '../widgets/projectProgress/ProjectProgress';
 import Weather from '../widgets/weather/Weather';
@@ -11,7 +11,6 @@ import Sidebar from '../sidebar/Sidebar';
 
 type Widget = {
   id: string; 
-  content: string;
   row: number;
   col: number;
   rowSpan: number;
@@ -19,18 +18,23 @@ type Widget = {
   className: string;
 };
 
+const initialWidgets: Widget[] = [
+  { id: 'weather', row: 0, col: 0, rowSpan: 2, colSpan: 2, className: 'weather' },
+  { id: 'project-progress', row: 2, col: 0, rowSpan: 2, colSpan: 2, className: 'project-progress' },
+  { id: 'analytics-tags', row: 4, col: 0, rowSpan: 2, colSpan: 2, className: 'analytics-tags' },
+  { id: 'stats', row: 0, col:2, rowSpan: 2, colSpan: 2, className: 'stats' },
+  { id: 'notifications', row: 2, col: 2, rowSpan: 2, colSpan: 2, className: 'notifications' },
+];
+
 const numRows = 6;
 const numCols = 6;
 
-const initialWidgets: Widget[] = [
-  { id: 'weather', content: 'Weather', row: 0, col: 0, rowSpan: 2, colSpan: 2, className: 'weather' },
-  { id: 'project-progress', content: 'Project progress', row: 2, col: 0, rowSpan: 2, colSpan: 2, className: 'project-progress' },
-  { id: 'analytics-tags', content: 'Analytics tags', row: 4, col: 0, rowSpan: 2, colSpan: 2, className: 'analytics-tags' },
-  { id: 'stats', content: 'Stats', row: 0, col:2, rowSpan: 2, colSpan: 2, className: 'stats' },
-  { id: 'notifications', content: 'Notifications', row: 2, col: 2, rowSpan: 2, colSpan: 2, className: 'notifications' },
-];
 
 function Dashboard() {
+  
+  const [widgets, setWidgets] = useState<Widget[]>(initialWidgets);
+  const [draggedWidget, setDraggedWidget] = useState<Widget | null>(null);
+  
   const isCellOccupied = (row: number, col: number): boolean => {
     return widgets.some(
       (w) =>
@@ -41,10 +45,7 @@ function Dashboard() {
         col < w.col + w.colSpan
     );
   };
-  
-  const [widgets, setWidgets] = useState<Widget[]>(initialWidgets);
-  const [draggedWidget, setDraggedWidget] = useState<Widget | null>(null);
-  
+
   const onDragStart = (e: React.DragEvent, widget: Widget) => {
     setDraggedWidget(widget);
     e.dataTransfer.setData("text/plain", widget.id);
@@ -74,19 +75,18 @@ function Dashboard() {
         const queue: [number, number][] = [[row, col]];
         const visited = new Set<string>();
         visited.add(`${row},${col}`);
-      
+
         let found = false;
-      
+
         while (queue.length > 0 && !found) {
           const [currentRow, currentCol] = queue.shift()!;
-      
           const neighbors = [
-            [currentRow - 1, currentCol], 
+            [currentRow - 1, currentCol],
             [currentRow + 1, currentCol],
             [currentRow, currentCol - 1],
-            [currentRow, currentCol + 1], 
+            [currentRow, currentCol + 1],
           ];
-      
+
           for (const [neighborRow, neighborCol] of neighbors) {
             if (
               neighborRow >= 0 &&
@@ -96,37 +96,36 @@ function Dashboard() {
               !visited.has(`${neighborRow},${neighborCol}`)
             ) {
               visited.add(`${neighborRow},${neighborCol}`);
-      
+
               if (!isCellOccupied(neighborRow, neighborCol)) {
                 row = neighborRow;
                 col = neighborCol;
                 found = true;
                 break;
               }
-      
+
               queue.push([neighborRow, neighborCol]);
             }
           }
         }
-      
+
         if (!found) {
-          console.log("Ingen ledige celler tilgjengelig.");
           return;
         }
       }
 
-    let maxRowSpan = 0;
-    let maxColSpan = 0;
-  
-    for (let r = row; r < numRows; r++) {
-      if (isCellOccupied(r, col)) break;
-      maxRowSpan++;
-    }
-  
-    for (let c = col; c < numCols; c++) {
-      if (isCellOccupied(row, c)) break;
-      maxColSpan++;
-    }
+      let maxRowSpan = 0;
+      let maxColSpan = 0;
+
+      for (let r = row; r < numRows; r++) {
+        if (isCellOccupied(r, col)) break;
+        maxRowSpan++;
+      }
+
+      for (let c = col; c < numCols; c++) {
+        if (isCellOccupied(row, c)) break;
+        maxColSpan++;
+      }
   
     const fitsInitialSize =
       maxRowSpan >= initialWidget.rowSpan && maxColSpan >= initialWidget.colSpan;

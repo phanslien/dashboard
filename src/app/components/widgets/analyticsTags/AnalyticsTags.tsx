@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import styles from './AnalyticsTags.module.css'
 
 const AnalyticsTags = () => {
