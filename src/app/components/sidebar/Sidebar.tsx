@@ -3,6 +3,7 @@ import styles from './Sidebar.module.css';
 
 type Widget = {
   id: string;
+  name: string;
 };
 
 type SidebarProps = {
@@ -15,7 +16,7 @@ const Sidebar = ({ widgets }: SidebarProps) => {
       <h2>Available Widgets</h2>
       <ul>
         {widgets.map((widget) => (
-          <li key={widget.id}  className={styles.widgetItem}>{widget.id}</li>
+          <li key={widget.id}  className={styles.widgetItem}>{widget.name}</li>
         ))}
       </ul>
     </div>

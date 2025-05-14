@@ -11,6 +11,7 @@ import Sidebar from '../sidebar/Sidebar';
 
 type Widget = {
   id: string; 
+  name: string;
   row: number;
   col: number;
   rowSpan: number;
@@ -19,11 +20,11 @@ type Widget = {
 };
 
 const initialWidgets: Widget[] = [
-  { id: 'weather', row: 0, col: 0, rowSpan: 2, colSpan: 2, className: 'weather' },
-  { id: 'project-progress', row: 2, col: 0, rowSpan: 2, colSpan: 2, className: 'project-progress' },
-  { id: 'analytics-tags', row: 4, col: 0, rowSpan: 2, colSpan: 2, className: 'analytics-tags' },
-  { id: 'stats', row: 0, col:2, rowSpan: 2, colSpan: 2, className: 'stats' },
-  { id: 'notifications', row: 2, col: 2, rowSpan: 2, colSpan: 2, className: 'notifications' },
+  { id: 'weather', name: 'Weather',row: 0, col: 0, rowSpan: 2, colSpan: 2, className: 'weather' },
+  { id: 'project-progress', name: 'Project progress', row: 2, col: 0, rowSpan: 2, colSpan: 2, className: 'project-progress' },
+  { id: 'analytics-tags', name: 'Analytics tags', row: 4, col: 0, rowSpan: 2, colSpan: 2, className: 'analytics-tags' },
+  { id: 'stats', row: 0, name: 'Stats', col:2, rowSpan: 2, colSpan: 2, className: 'stats' },
+  { id: 'notifications', name: 'Notifications', row: 2, col: 2, rowSpan: 2, colSpan: 2, className: 'notifications' },
 ];
 
 const numRows = 6;
