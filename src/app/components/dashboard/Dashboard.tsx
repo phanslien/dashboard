@@ -208,7 +208,7 @@ function Dashboard() {
         {widgets.map((widget) => (
           <div
             key={widget.id}
-            className={`${styles.widget} ${styles[widget.className] || ''}`}
+            className={`${styles.widget}`}
             draggable
             onDragStart={(e) => onDragStart(e, widget)}
             style={{
